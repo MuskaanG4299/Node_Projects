@@ -1,0 +1,23 @@
+version: '3.9'
+services:
+  admin_api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "4000:3000"
+    environment:
+      MONGODB_URI: mongodb://mongo_db:27017/NewsArticles
+    depends_on:
+      - mongo_db
+  mongo_db:
+    container_name: db_container
+    image: mongo:latest
+    ports:
+      - "27017:27017"
+    restart: always
+    volumes: 
+      - mongo_db:/data/db
+
+volumes: 
+  mongo_db: {}

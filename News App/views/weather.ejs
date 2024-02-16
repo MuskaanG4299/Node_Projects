@@ -1,0 +1,45 @@
+<!-- weather.ejs -->
+
+<h1>Current Weather</h1>
+
+<div id="weatherInfo">
+  <p>Loading...</p>
+</div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    // Get user's location
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(function(position) {
+        // Fetch weather data using OpenWeatherMap API
+        var apiKey = 'YOUR_OPENWEATHERMAP_API_KEY';
+        var apiUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${position.coords.latitude}&lon=${position.coords.longitude}&appid=${apiKey}&units=metric`;
+
+        fetch(apiUrl)
+          .then(response => response.json())
+          .then(data => {
+            // Update the weather information in the DOM
+            var weatherInfo = document.getElementById('weatherInfo');
+            weatherInfo.innerHTML = `
+              <p>Location: ${data.name}, ${data.sys.country}</p>
+              <p>Temperature: ${data.main.temp} °C</p>
+              <p>Weather: ${data.weather[0].description}</p>
+            `;
+          })
+          .catch(error => {
+            console.error('Error fetching weather data:', error);
+            var weatherInfo = document.getElementById('weatherInfo');
+            weatherInfo.innerHTML = '<p>Error fetching weather data.</p>';
+          });
+      }, function(error) {
+        console.error('Error getting user location:', error);
+        var weatherInfo = document.getElementById('weatherInfo');
+        weatherInfo.innerHTML = '<p>Error getting user location.</p>';
+      });
+    } else {
+      console.error('Geolocation is not supported by this browser.');
+      var weatherInfo = document.getElementById('weatherInfo');
+      weatherInfo.innerHTML = '<p>Geolocation is not supported by this browser.</p>';
+    }
+  });
+</script>

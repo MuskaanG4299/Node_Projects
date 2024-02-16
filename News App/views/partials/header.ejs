@@ -1,0 +1,42 @@
+<style>
+  /* Header */
+  .header-logo {
+    width: 100px; /* Adjust the width as needed */
+    height: auto; /* Maintain aspect ratio */
+  }
+
+  .header-text {
+    font-size: 1.5rem; /* Adjust font size as needed */
+    font-weight: bold; /* Make the text bold */
+    margin-left: 10px; /* Add some space between the logo and text */
+  }
+
+  .nav-pills .nav-link {
+    font-size: 1.2rem; /* Adjust font size as needed */
+    font-weight: bold; /* Make the text bold */
+  }
+
+  .nav-pills .nav-link:hover {
+    color: rgb(28, 28, 33) !important;
+  }
+
+  .nav-pills .nav-link.active {
+    color: blue !important;
+  }
+</style>
+
+<!-- Header -->
+<header class="d-flex flex-wrap justify-content-center py-3 mb-4 border-bottom">
+  <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-dark text-decoration-none">
+    <svg class="bi me-2" width="40" height="32"><use xlink:href="#bootstrap"></use></svg>
+    <img src="/img/logo2_processed.png" alt="Logo" class="header-logo">
+    <span class="header-text">NewsNest</span>
+  </a>
+
+  <ul class="nav nav-pills">
+    <li class="nav-item"><a href="/" class="nav-link" aria-current="page">Home</a></li>
+    <li class="nav-item"><a href="/sports" class="nav-link">Sports</a></li>
+    <li class="nav-item"><a href="/about" class="nav-link">About Us</a></li>
+    <li class="nav-item"><a href="/contact" class="nav-link">Contact Us</a></li>
+  </ul>
+</header>
